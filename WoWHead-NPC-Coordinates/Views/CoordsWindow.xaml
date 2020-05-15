@@ -1,0 +1,34 @@
+﻿<Window x:Class="WoWHead_NPC_Coordinates.Views.CoordsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WoWHead_NPC_Coordinates.Views"
+        xmlns:views="clr-namespace:WoWHead_NPC_Coordinates.Views"
+        mc:Ignorable="d"
+        Title="WoWHead NPC Coords" Height="400" Width="525" WindowStyle="None" Background="Transparent" AllowsTransparency="True"
+        >
+
+    <Grid>
+
+        <Rectangle x:Name="WindowBody" HorizontalAlignment="Stretch"  Stroke="#FF00306A" VerticalAlignment="Stretch" Grid.Row="0" RadiusX="9" RadiusY="9" >
+            <Rectangle.Effect>
+                <DropShadowEffect x:Name="BodyEffect" BlurRadius="15" ShadowDepth="0" Color="Black"/>
+            </Rectangle.Effect>
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#B200C1C1" Offset="1"/>
+                    <GradientStop Color="#B227638D"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+
+        <Rectangle x:Name="WindowHeader" HorizontalAlignment="Stretch" Height="24" Stroke="#FF00306A" VerticalAlignment="Top" Fill="#FF0F5874" RadiusX="9" RadiusY="9"   />
+        <Label x:Name="HeaderClose" Content="X" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-2,6,0" FontSize="14"  FontFamily="Comic Sans MS" FontWeight="Bold"   />
+        <Label x:Name="HeaderMinimize" Content="_" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-11,25,0" FontSize="20"  FontFamily="Comic Sans MS" FontWeight="Bold"   />
+        <Label x:Name="HeaderTitle" Content="WoWHead NPC Coords" Height="27" Width="145" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="LightGreen" FontWeight="Bold"  />
+        
+        <views:CoordsControl />
+        
+    </Grid>
+</Window>
