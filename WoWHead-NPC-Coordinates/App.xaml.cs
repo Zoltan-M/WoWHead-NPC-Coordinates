@@ -21,9 +21,11 @@ namespace WoWHead_NPC_Coordinates
             base.OnStartup(e);
             var model = new UIModel();
             var currentWindowState = WindowState.Normal;
-            var uiViewModel = new UIViewModel(model, currentWindowState);
+            var windowTitle = "WoWHead NPC Coords";
+            var uiViewModel = new UIViewModel(model, currentWindowState, windowTitle);
             var mainWindow = new CoordsWindow { DataContext = uiViewModel };
-
+            mainWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+    
             mainWindow.Show();
         }
     }

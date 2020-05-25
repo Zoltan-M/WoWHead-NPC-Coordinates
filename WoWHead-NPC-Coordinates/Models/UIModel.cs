@@ -18,11 +18,6 @@ namespace WoWHead_NPC_Coordinates.Models
             Application.Current.Shutdown();
         }
 
-        public void MoveWindow()
-        {
-
-        }
-
         public void CopyToClipboard(string text)
         {
             try

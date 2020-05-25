@@ -16,17 +16,16 @@ namespace WoWHead_NPC_Coordinates.ViewModels
     {
         private readonly UIModel _model;
         private WindowState _currentWindowState;
+        private string _windowTitle;
         private string _npcID;
         private string _coordinates;
 
-
         private UICommand _closeMouseClickCommandCommand;
         private UICommand _minimizeMouseClickCommandCommand;
-        private UICommand _moveWindowCommand;
         private UICommand _copyToClipboardCommand;
 
         public UIViewModel() { }
-        public UIViewModel(UIModel model, WindowState currentWindowState) => (_model, _currentWindowState) = (model, currentWindowState);
+        public UIViewModel(UIModel model, WindowState currentWindowState, string windowTitle) => (_model, _currentWindowState, _windowTitle) = (model, currentWindowState, windowTitle);
 
 
         public WindowState CurrentWindowState
@@ -34,7 +33,12 @@ namespace WoWHead_NPC_Coordinates.ViewModels
             get => _currentWindowState;
             set => Update(ref _currentWindowState, value);
         }
-
+        public string WindowTitle
+        {
+            get => _windowTitle;
+            set => Update(ref _windowTitle, value);
+        }
+        
         public string NPCid
         {
             get => _npcID;
@@ -46,7 +50,6 @@ namespace WoWHead_NPC_Coordinates.ViewModels
             get => _coordinates;
             set => Update(ref _coordinates, value);
         }
-
 
         public ICommand CloseMouseClickCommand
         {
@@ -84,20 +87,6 @@ namespace WoWHead_NPC_Coordinates.ViewModels
                 }
 
                 return _copyToClipboardCommand;
-            }
-        }
-
-        public ICommand MoveWindowCommand
-        {
-            get
-            {
-                if (_moveWindowCommand == null)
-                {
-
-                    _moveWindowCommand = new UICommand(_ => _model.MoveWindow());
-                }
-
-                return _moveWindowCommand;
             }
         }
 
