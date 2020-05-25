@@ -5,11 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WoWHead_NPC_Coordinates.Views"
         xmlns:views="clr-namespace:WoWHead_NPC_Coordinates.Views"
+        xmlns:viewModels="clr-namespace:WoWHead_NPC_Coordinates.ViewModels" xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        d:DataContext="{d:DesignInstance viewModels:UIViewModel}"
         mc:Ignorable="d"
-        Title="WoWHead NPC Coords" Height="400" Width="525" WindowStyle="None" Background="Transparent" AllowsTransparency="True"
+        Title="WoWHead NPC Coords" Height="400" Width="525" WindowStyle="None" Background="Transparent" AllowsTransparency="True" 
+        WindowState="{Binding CurrentWindowState, Mode=TwoWay}"
         >
 
     <Grid>
+        
 
         <Rectangle x:Name="WindowBody" HorizontalAlignment="Stretch"  Stroke="#FF00306A" VerticalAlignment="Stretch" Grid.Row="0" RadiusX="9" RadiusY="9" >
             <Rectangle.Effect>
@@ -22,12 +26,65 @@
                 </LinearGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
+        
+        
 
         <Rectangle x:Name="WindowHeader" HorizontalAlignment="Stretch" Height="24" Stroke="#FF00306A" VerticalAlignment="Top" Fill="#FF0F5874" RadiusX="9" RadiusY="9"   />
-        <Label x:Name="HeaderClose" Content="X" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-2,6,0" FontSize="14"  FontFamily="Comic Sans MS" FontWeight="Bold"   />
-        <Label x:Name="HeaderMinimize" Content="_" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-11,25,0" FontSize="20"  FontFamily="Comic Sans MS" FontWeight="Bold"   />
-        <Label x:Name="HeaderTitle" Content="WoWHead NPC Coords" Height="27" Width="145" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="LightGreen" FontWeight="Bold"  />
+
+        <Label x:Name="HeaderClose" Content="X" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-2,6,0"  FontFamily="Comic Sans MS" >
+            <Label.Style>
+                <Style TargetType="{x:Type Label}">
+                    <Style.Triggers>
+                        <Trigger Property="Label.IsMouseOver" Value="true">
+                            <Setter Property="Foreground" Value="Red"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="FontSize" Value="14.5"/>
+                        </Trigger>
+                        <Trigger Property="Label.IsMouseOver" Value="false">
+                            <Setter Property="Foreground" Value="LightBlue"/>
+                            <Setter Property="FontWeight" Value="Normal"/>
+                            <Setter Property="FontSize" Value="14"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseUp">
+                    <i:InvokeCommandAction Command="{Binding CloseMouseClickCommand}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </Label>
         
+        <Label x:Name="HeaderMinimize" Content="_" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-11,25,0"  FontFamily="Comic Sans MS">
+            <Label.Style>
+                <Style TargetType="{x:Type Label}">
+                    <Style.Triggers>
+                        <Trigger Property="Label.IsMouseOver" Value="true">
+                            <Setter Property="Foreground" Value="Red"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="FontSize" Value="19.9"/>
+                        </Trigger>
+                        <Trigger Property="Label.IsMouseOver" Value="false">
+                            <Setter Property="Foreground" Value="LightBlue"/>
+                            <Setter Property="FontWeight" Value="Normal"/>
+                            <Setter Property="FontSize" Value="20"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseUp">
+                    <i:InvokeCommandAction Command="{Binding MinimizeMouseClickCommand}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </Label>
+        
+        <Label x:Name="HeaderTitle" Content="WoWHead NPC Coords" Height="27" Width="145" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="LightGreen" FontWeight="Bold">
+            <Label.InputBindings>
+                <MouseBinding MouseAction="LeftClick" Command="{Binding MoveWindowCommand}" />
+            </Label.InputBindings>
+        </Label>
+
         <views:CoordsControl />
         
     </Grid>

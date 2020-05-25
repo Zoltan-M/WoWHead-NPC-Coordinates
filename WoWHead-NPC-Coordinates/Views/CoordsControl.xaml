@@ -4,6 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WoWHead_NPC_Coordinates.Views"
+             xmlns:viewModels="clr-namespace:WoWHead_NPC_Coordinates.ViewModels"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             d:DataContext="{d:DesignInstance viewModels:UIViewModel}"
              mc:Ignorable="d" 
             >
 
@@ -13,8 +16,16 @@
                 <DropShadowEffect/>
             </Label.Effect>
         </Label>
-        <TextBox x:Name="NPCid" Width="80" Height="25" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="50" MaxLength="7"  Opacity="0.8" Foreground="LightBlue" FontWeight="Bold" FontSize="16" Background="#FF0D8181" TextAlignment="Center"   />
-        <Button Content="Start" VerticalAlignment="Top" HorizontalAlignment="Center" Height="30" Width="80" Margin="82" FontWeight="Bold" Foreground="#FF00FFC5" Opacity="0.6" Background="#FF029AC7" FontSize="16"   >
+        
+        <TextBox x:Name="NPCid" Width="80" Height="25" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="50" MaxLength="7"  Opacity="0.8" Foreground="LightBlue" FontWeight="Bold" FontSize="16" Background="#FF0D8181" TextAlignment="Center" Text="{Binding NPCid}">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="PreviewTextInput" >
+                    <i:CallMethodAction TargetObject="{Binding}" MethodName="CheckID"  />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </TextBox>
+        
+        <Button Content="Start" VerticalAlignment="Top" HorizontalAlignment="Center" Height="30" Width="80" Margin="82" FontWeight="Bold" Foreground="#FF00FFC5" Opacity="0.6" Background="#FF029AC7" FontSize="16" Command="{Binding LabelMouseEnterCommand}">
             <Button.Style>
                 <Style TargetType="Button">
                     <Style.Triggers>
@@ -51,9 +62,11 @@
                 <DropShadowEffect/>
             </Button.Effect>
         </Button>
-        <TextBox x:Name="CoordsText"  Height="220" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="20, 120, 20, 0" AcceptsReturn="True" IsReadOnly="True" Opacity="0.6" Foreground="LightBlue" FontWeight="Bold" FontSize="14" Background="#262626"
-                 ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"    />
-        <Button Content="Copy to Clipboard" VerticalAlignment="Bottom" HorizontalAlignment="Center" Height="30" Width="160" Margin="20" FontWeight="Bold" Foreground="#FF00FFC5" Opacity="0.6" Background="#FF029AC7" FontSize="16"    >
+        
+        <TextBox x:Name="CoordsText"  Height="220" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="20, 120, 20, 0" AcceptsReturn="True" IsReadOnly="True" Opacity="0.6" Foreground="LightBlue" FontWeight="Bold" FontSize="14" Background="#262626" 
+                 ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" Text="{Binding Coordinates}"/>
+        
+        <Button Content="Copy to Clipboard" VerticalAlignment="Bottom" HorizontalAlignment="Center" Height="30" Width="160" Margin="20" FontWeight="Bold" Foreground="#FF00FFC5" Opacity="0.6" Background="#FF029AC7" FontSize="16" Command="{Binding CopyToClipboardCommand}">
             <Button.Style>
                 <Style TargetType="Button">
                     <Style.Triggers>
