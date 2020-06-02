@@ -1,40 +1,35 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows.Media;
 
 namespace WoWHead_NPC_Coordinates.Models
 {
-    public class UIModel
+    public class Model
     {
-        public UIModel() { }
+        public Model() { }
         public void CloseMouseClick()
         {
             Application.Current.Shutdown();
         }
 
-        public void CopyToClipboard(string text)
+        public void CopyToClipboard(string text, bool isStartButtonEnabled)
         {
             try
             {
-                Clipboard.Clear();
-                Clipboard.SetText(text);
+                if(!text.Equals(string.Empty) && isStartButtonEnabled)
+                {
+                    Clipboard.Clear();
+                    Clipboard.SetText(text);
+                }
             }
             catch (Exception) { }
         }
-
 
         public bool IsNotID(string text)
         {
             Regex regex = new Regex(@"^\d$");
             return !regex.IsMatch(text);
         }
-
 
     }
 }

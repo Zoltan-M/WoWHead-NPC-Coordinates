@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WoWHead_NPC_Coordinates.Views"
         xmlns:views="clr-namespace:WoWHead_NPC_Coordinates.Views"
         xmlns:viewModels="clr-namespace:WoWHead_NPC_Coordinates.ViewModels" xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-        d:DataContext="{d:DesignInstance viewModels:UIViewModel}"
+        d:DataContext="{d:DesignInstance viewModels:ViewModel}"
         mc:Ignorable="d"
         Title="{Binding WindowTitle}" Height="400" Width="525" WindowStyle="None" Background="Transparent" AllowsTransparency="True" 
         WindowState="{Binding CurrentWindowState, Mode=TwoWay}"

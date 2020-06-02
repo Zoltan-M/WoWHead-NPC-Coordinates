@@ -6,7 +6,7 @@ using System.Text;
 
 namespace WoWHead_NPC_Coordinates.ViewModels
 {
-    public abstract class UIRaiseEvent : INotifyPropertyChanged
+    public abstract class EventRaiser : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 

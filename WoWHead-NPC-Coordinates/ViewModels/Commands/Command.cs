@@ -5,13 +5,13 @@ using System.Windows.Input;
 
 namespace WoWHead_NPC_Coordinates.ViewModels.Commands
 {
-    public class UICommand : ICommand
+    public class Command : ICommand
     {
         private readonly Action<object> _execute;
         private readonly Predicate<object> _canExecute;
 
-        public UICommand(Action<object> execute) : this(execute, null) { }
-        public UICommand(Action<object> execute, Predicate<object> canExecute)
+        public Command(Action<object> execute) : this(execute, null) { }
+        public Command(Action<object> execute, Predicate<object> canExecute)
         {
             _execute = execute; 
             _canExecute = canExecute;
